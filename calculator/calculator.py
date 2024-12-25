@@ -1,34 +1,37 @@
 class Calculator():
 
     def __init__(self):
-        self.total: int = 0
+        self.total: float = 0
         self.digits: str = '0'
         print(self)
     
     def __str__(self):
         return f'Total: {self.digits}'
     
-    def add(self, operand: int) -> None:
+    def add(self, operand: float) -> None:
         self.total += operand
         
         self.update_digits()
         print(self)
 
-    def subtract(self, operand: int) -> None:
+    def subtract(self, operand: float) -> None:
         self.total -= operand
 
         self.update_digits()
         print(self)
 
-    def multiply(self, operand: int) -> None:
+    def multiply(self, operand: float) -> None:
         self.total = self.total * operand
 
         self.update_digits()
         print(self)
 
-    def divide(self, operand: int) -> None:
-        self.total = self.total // operand
-        
+    def divide(self, operand: float) -> None:
+        try:
+            self.total = self.total / operand
+        except ZeroDivisionError:
+            print("Fuck you")
+
         self.update_digits()
         print(self)
 
@@ -41,7 +44,7 @@ class Calculator():
         else:
             self.digits += str(digit)
 
-        self.total = int(self.digits)
+        self.total = float(self.digits)
 
         print(self, self.total)
 
